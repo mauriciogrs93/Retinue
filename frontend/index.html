@@ -2072,6 +2072,31 @@
 }
 
 </style>
+<style>
+
+/* === TOGGLE ALIGN RIGHT === */
+.site-header .theme-toggle.desktop-only {
+  margin-left: auto;
+}
+/* On mobile, header has wordmark left, toggles right */
+@media (max-width: 768px) {
+  .site-header {
+    display: flex;
+    align-items: center;
+  }
+  .site-header .header-context {
+    margin-right: auto;
+  }
+  .site-header .theme-toggle.header-toggle {
+    margin-left: auto;
+    margin-right: 8px;
+  }
+  .site-header .hamburger {
+    margin-left: 0;
+  }
+}
+
+</style>
 </head>
 <body>
   <div class="global-header">
