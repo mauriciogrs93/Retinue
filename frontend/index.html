@@ -1703,11 +1703,11 @@
       .recommended-section { margin-bottom: 20px; padding: 15px; }
       .recommended-head { display: block; }
       .recommended-head > p { margin-top: 8px; text-align: left; }
-      .recommended-grid { grid-template-columns: 1fr; }
-      .recommended-card { display: grid; grid-template-columns: 92px minmax(0, 1fr); align-items: center; }
-      .recommended-card .logo-stage { width: 92px; aspect-ratio: 1 / 1; }
-      .recommended-card .card-meta { padding: 5px 7px 5px 12px; }
-      .recommended-card .card-summary { min-height: 0; margin: 5px 0 7px; }
+      .recommended-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .recommended-card { display: block; }
+      .recommended-card .logo-stage { width: 100%; aspect-ratio: 1.62 / 1; }
+      .recommended-card .card-meta { padding: 9px 3px 3px; }
+      .recommended-card .card-summary { min-height: 34px; margin: 5px 0 7px; }
       .recommended-card .verified-line { margin: 6px 0; }
     }
 
