@@ -1899,14 +1899,14 @@
       </nav>
       <div class="header-actions">
         <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">◐</button>
-        <div class="menu-btn" id="menuBtn" role="button" aria-label="Open menu" tabindex="0" onclick="var m=document.getElementById('mobileNav');m.style.display=(m.style.display==='block'?'none':'block');" ontouchstart="var m=document.getElementById('mobileNav');m.style.display=(m.style.display==='block'?'none':'block');event.preventDefault();"><span></span><span></span><span></span></div>
+        <div class="menu-btn" id="menuBtn" role="button" aria-label="Open menu" tabindex="0" onclick="document.getElementById('mobileNav').style.display='block'"><span></span><span></span><span></span></div>
       </div>
-      <div class="mobile-nav" id="mobileNav" style="display:none;position:fixed;top:0;right:0;bottom:0;width:260px;background:#181b18;z-index:9999;padding:70px 20px 20px;box-shadow:-4px 0 20px rgba(0,0,0,0.5);">
+      <div class="mobile-nav" id="mobileNav" style="display:none;position:fixed;top:0;right:0;bottom:0;width:260px;background:#181b18;z-index:9999;padding:20px;box-shadow:-4px 0 20px rgba(0,0,0,0.5);"><div onclick="document.getElementById('mobileNav').style.display='none'" style="text-align:right;font-size:24px;color:#f1f3ee;cursor:pointer;padding:10px;">✕</div><div style="padding-top:20px;">
         <a href="#/directory" onclick="document.getElementById('mobileNav').style.display='none'" style="display:block;padding:14px 8px;font-size:17px;font-weight:600;color:#f1f3ee;text-decoration:none;border-bottom:1px solid #30352f;">Directory</a>
         <a href="#/room" onclick="document.getElementById('mobileNav').style.display='none'" style="display:block;padding:14px 8px;font-size:17px;font-weight:600;color:#f1f3ee;text-decoration:none;border-bottom:1px solid #30352f;">Room</a>
         <a href="#/about" onclick="document.getElementById('mobileNav').style.display='none'" style="display:block;padding:14px 8px;font-size:17px;font-weight:600;color:#f1f3ee;text-decoration:none;border-bottom:1px solid #30352f;">About</a>
         <a href="#/suggest" onclick="document.getElementById('mobileNav').style.display='none'" style="display:block;padding:14px 8px;font-size:17px;font-weight:600;color:#f1f3ee;text-decoration:none;">Suggest</a>
-      </div>
+      </div></div>
     </header>
   </div>
 
