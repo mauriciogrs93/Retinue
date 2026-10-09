@@ -1991,6 +1991,13 @@
 }
 @media (max-width: 768px) {
   .theme-toggle.desktop-only { display: none; }
+  .theme-toggle.header-toggle { display: flex; }
+}
+.theme-toggle.header-toggle {
+  display: none;
+}
+@media (min-width: 769px) {
+  .theme-toggle.header-toggle { display: none; }
 }
 .theme-toggle:active {
   transform: scale(0.95);
@@ -2012,6 +2019,9 @@
   <div class="global-header">
     <header class="site-header">
       <div class="header-context"><a class="wordmark" href="#/directory">Retinue</a><span class="header-count" id="headerCount">31 curated agents</span></div>
+      <button class="theme-toggle header-toggle" id="themeToggleHeader" aria-label="Switch to light mode" title="Toggle theme">
+        <span class="theme-icon-dark">◐</span><span class="theme-icon-light" style="display:none;">◑</span>
+      </button>
       <button class="hamburger" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
@@ -4067,9 +4077,14 @@
 
 <script>
 (function() {
+  function initHamburger() {
   var btn = document.getElementById('hamburgerBtn');
   var menu = document.getElementById('mobileMenu');
-  if (!btn || !menu) return;
+  if (!btn || !menu) {
+    // Retry if DOM not ready
+    setTimeout(initHamburger, 100);
+    return;
+  }
   
   // Create overlay
   var overlay = document.createElement('div');
@@ -4111,13 +4126,20 @@
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape' && menu.classList.contains('open')) closeMenu();
   });
+  }
+  // Init when DOM ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initHamburger);
+  } else {
+    initHamburger();
+  }
 })();
 </script>
 
 
 <script>
 (function() {
-  var toggles = [document.getElementById('themeToggle'), document.getElementById('themeToggleMobile')].filter(Boolean);
+  var toggles = [document.getElementById('themeToggle'), document.getElementById('themeToggleMobile'), document.getElementById('themeToggleHeader')].filter(Boolean);
   if (!toggles.length) return;
   
   var root = document.documentElement;
