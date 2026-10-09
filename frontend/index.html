@@ -1898,11 +1898,11 @@
         <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">◐</button>
         <button class="menu-btn" id="menuBtn" aria-label="Open menu"><span></span><span></span><span></span></button>
       </div>
-      <div class="mobile-nav" id="mobileNav">
-        <a href="#/directory">Directory</a>
-        <a href="#/room">Room</a>
-        <a href="#/about">About</a>
-        <a href="#/suggest">Suggest</a>
+      <div class="mobile-nav" id="mobileNav" style="display:none;position:fixed;top:0;right:0;bottom:0;width:260px;background:#181b18;z-index:9999;padding:70px 20px 20px;box-shadow:-4px 0 20px rgba(0,0,0,0.5);">
+        <a href="#/directory" style="display:block;padding:14px 8px;font-size:17px;font-weight:600;color:#f1f3ee;text-decoration:none;border-bottom:1px solid #30352f;">Directory</a>
+        <a href="#/room" style="display:block;padding:14px 8px;font-size:17px;font-weight:600;color:#f1f3ee;text-decoration:none;border-bottom:1px solid #30352f;">Room</a>
+        <a href="#/about" style="display:block;padding:14px 8px;font-size:17px;font-weight:600;color:#f1f3ee;text-decoration:none;border-bottom:1px solid #30352f;">About</a>
+        <a href="#/suggest" style="display:block;padding:14px 8px;font-size:17px;font-weight:600;color:#f1f3ee;text-decoration:none;">Suggest</a>
       </div>
     </header>
   </div>
@@ -3955,15 +3955,23 @@
       });
     }
     
-    // Mobile menu
+    // Mobile menu - simple show/hide
     if (menuBtn && mobileNav) {
-      menuBtn.addEventListener('click', function() {
-        mobileNav.classList.toggle('open');
+      menuBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        var isOpen = mobileNav.style.display === 'block';
+        mobileNav.style.display = isOpen ? 'none' : 'block';
       });
       mobileNav.querySelectorAll('a').forEach(function(a) {
         a.addEventListener('click', function() {
-          mobileNav.classList.remove('open');
+          mobileNav.style.display = 'none';
         });
+      });
+      // Close when clicking outside
+      document.addEventListener('click', function(e) {
+        if (mobileNav.style.display === 'block' && !mobileNav.contains(e.target) && e.target !== menuBtn && !menuBtn.contains(e.target)) {
+          mobileNav.style.display = 'none';
+        }
       });
     }
   }
