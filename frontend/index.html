@@ -1859,9 +1859,16 @@
 .menu-btn span { width: 20px; height: 2px; background: var(--ink); border-radius: 2px; }
 .mobile-nav {
   display: none; position: fixed; top: 0; right: 0; bottom: 0;
-  width: 260px; background: var(--surface); z-index: 200;
-  padding: 70px 20px 20px; box-shadow: -4px 0 20px rgba(0,0,0,0.15);
+  width: 260px; background: #181b18; z-index: 200;
+  padding: 70px 20px 20px; box-shadow: -4px 0 20px rgba(0,0,0,0.3);
   transform: translateX(100%); transition: transform 0.25s ease;
+  opacity: 1;
+}
+:root[data-theme="light"] .mobile-nav {
+  background: #ffffff;
+}
+.mobile-nav a {
+  background: transparent;
 }
 .mobile-nav.open { transform: translateX(0); }
 .mobile-nav a {
