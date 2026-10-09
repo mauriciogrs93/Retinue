@@ -2118,6 +2118,32 @@
 }
 
 </style>
+<style>
+
+/* === NAV FLUSH RIGHT === */
+@media (min-width: 769px) {
+  .site-header {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+  }
+  .site-header .header-context {
+    margin-right: auto !important;
+    flex-shrink: 0;
+  }
+  .site-header .site-nav {
+    display: flex !important;
+    margin-left: auto !important;
+    margin-right: 16px !important;
+    flex-shrink: 0;
+  }
+  .site-header .theme-toggle.desktop-only {
+    flex-shrink: 0;
+    margin-left: 0 !important;
+  }
+}
+
+</style>
 </head>
 <body>
   <div class="global-header">
