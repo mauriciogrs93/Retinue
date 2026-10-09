@@ -55,6 +55,9 @@
       }
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
+    html {
+      background: var(--bg);
+    }
     body {
       margin: 0;
       min-width: 0;
@@ -1963,6 +1966,31 @@
   font-size: 18px;
   color: var(--ink);
   transition: background 0.2s, transform 0.15s;
+  flex-shrink: 0;
+}
+.theme-toggle.desktop-only {
+  margin-left: 12px;
+}
+.mobile-menu-theme {
+  padding: 16px 4px;
+  border-top: 1px solid #2a2a2a;
+  margin-top: 8px;
+}
+.mobile-menu-theme .theme-toggle {
+  width: 100%;
+  height: auto;
+  padding: 14px;
+  border: 1px solid #2a2a2a;
+  border-radius: 12px;
+  gap: 10px;
+  font-size: 16px;
+}
+.mobile-menu-theme .theme-label {
+  font-size: 15px;
+  font-weight: 500;
+}
+@media (max-width: 768px) {
+  .theme-toggle.desktop-only { display: none; }
 }
 .theme-toggle:active {
   transform: scale(0.95);
@@ -1984,9 +2012,6 @@
   <div class="global-header">
     <header class="site-header">
       <div class="header-context"><a class="wordmark" href="#/directory">Retinue</a><span class="header-count" id="headerCount">31 curated agents</span></div>
-      <button class="theme-toggle" id="themeToggle" aria-label="Switch to light mode" title="Toggle theme">
-        <span class="theme-icon-dark">◐</span><span class="theme-icon-light" style="display:none;">◑</span>
-      </button>
       <button class="hamburger" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
@@ -1996,6 +2021,9 @@
         <a href="#/about" data-route-link="about">About</a>
         <a href="#/suggest" data-route-link="suggest">Suggest</a>
       </nav>
+      <button class="theme-toggle desktop-only" id="themeToggle" aria-label="Switch to light mode" title="Toggle theme">
+        <span class="theme-icon-dark">◐</span><span class="theme-icon-light" style="display:none;">◑</span>
+      </button>
       <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
         <div class="mobile-menu-header">
           <a class="wordmark" href="#/directory">Retinue</a>
@@ -2006,6 +2034,12 @@
           <a href="#/room" data-route-link="room"><span class="menu-icon">◉</span>Room<span class="menu-arrow">›</span></a>
           <a href="#/about" data-route-link="about"><span class="menu-icon">ℹ</span>About<span class="menu-arrow">›</span></a>
           <a href="#/suggest" data-route-link="suggest"><span class="menu-icon">✚</span>Suggest<span class="menu-arrow">›</span></a>
+        </div>
+        <div class="mobile-menu-theme">
+          <button class="theme-toggle mobile-only" id="themeToggleMobile" aria-label="Switch to light mode">
+            <span class="theme-icon-dark">◐</span><span class="theme-icon-light" style="display:none;">◑</span>
+            <span class="theme-label">Light mode</span>
+          </button>
         </div>
         <div class="mobile-menu-footer">
           <p>Find an agent that fits.</p>
@@ -4083,11 +4117,9 @@
 
 <script>
 (function() {
-  var toggle = document.getElementById('themeToggle');
-  if (!toggle) return;
+  var toggles = [document.getElementById('themeToggle'), document.getElementById('themeToggleMobile')].filter(Boolean);
+  if (!toggles.length) return;
   
-  var darkIcon = toggle.querySelector('.theme-icon-dark');
-  var lightIcon = toggle.querySelector('.theme-icon-light');
   var root = document.documentElement;
   
   // Load saved preference (default is dark)
@@ -4095,27 +4127,33 @@
   try { saved = localStorage.getItem('retinue-theme'); } catch(e) {}
   
   function applyTheme(theme) {
-    if (theme === 'light') {
+    var isLight = theme === 'light';
+    if (isLight) {
       root.setAttribute('data-theme', 'light');
-      toggle.setAttribute('aria-label', 'Switch to dark mode');
-      if (darkIcon) darkIcon.style.display = 'none';
-      if (lightIcon) lightIcon.style.display = '';
     } else {
       root.removeAttribute('data-theme');
-      toggle.setAttribute('aria-label', 'Switch to light mode');
-      if (darkIcon) darkIcon.style.display = '';
-      if (lightIcon) lightIcon.style.display = 'none';
     }
+    toggles.forEach(function(toggle) {
+      toggle.setAttribute('aria-label', isLight ? 'Switch to dark mode' : 'Switch to light mode');
+      var darkIcon = toggle.querySelector('.theme-icon-dark');
+      var lightIcon = toggle.querySelector('.theme-icon-light');
+      var label = toggle.querySelector('.theme-label');
+      if (darkIcon) darkIcon.style.display = isLight ? 'none' : '';
+      if (lightIcon) lightIcon.style.display = isLight ? '' : 'none';
+      if (label) label.textContent = isLight ? 'Dark mode' : 'Light mode';
+    });
   }
   
   // Apply saved or default (dark)
   applyTheme(saved === 'light' ? 'light' : 'dark');
   
-  toggle.addEventListener('click', function() {
-    var isLight = root.getAttribute('data-theme') === 'light';
-    var newTheme = isLight ? 'dark' : 'light';
-    applyTheme(newTheme);
-    try { localStorage.setItem('retinue-theme', newTheme); } catch(e) {}
+  toggles.forEach(function(toggle) {
+    toggle.addEventListener('click', function() {
+      var isLight = root.getAttribute('data-theme') === 'light';
+      var newTheme = isLight ? 'dark' : 'light';
+      applyTheme(newTheme);
+      try { localStorage.setItem('retinue-theme', newTheme); } catch(e) {}
+    });
   });
 })();
 </script>
