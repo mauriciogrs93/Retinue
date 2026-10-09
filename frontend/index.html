@@ -1850,7 +1850,7 @@
   display: block;
   width: 22px;
   height: 2px;
-  background: #1a1a1a;
+  background: #fff;
   border-radius: 2px;
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
@@ -1868,32 +1868,29 @@
   position: fixed;
   top: 0;
   right: -100%;
-  width: 300px;
-  max-width: 85vw;
+  width: 280px;
+  max-width: 80vw;
   height: 100vh;
   height: 100dvh;
-  background: #faf8f5;
-  box-shadow: -8px 0 32px rgba(0,0,0,0.14);
+  background: #1a1a1a;
   z-index: 1000;
-  transition: right 0.35s cubic-bezier(0.2, 0.75, 0.2, 1);
-  padding: 0;
+  transition: right 0.3s ease;
+  padding: 70px 20px 20px;
   overflow-y: auto;
-  border-radius: 20px 0 0 20px;
 }
 .mobile-menu-header {
-  padding: 28px 24px 20px;
-  border-bottom: 1px solid #f0ebe2;
+  padding: 0 4px 16px;
+  border-bottom: 1px solid #2a2a2a;
+  margin-bottom: 8px;
 }
 .mobile-menu-header .wordmark {
-  font-size: 22px;
-  font-weight: 800;
-  color: #1a1a1a;
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
   text-decoration: none;
 }
 .mobile-menu-header p {
-  margin: 4px 0 0;
-  font-size: 12px;
-  color: #999;
+  display: none;
 }
 .mobile-menu.open {
   right: 0;
@@ -1901,51 +1898,29 @@
 .mobile-menu-links {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  padding: 20px 16px;
+  padding: 8px 0;
 }
 .mobile-menu-links a {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 16px;
-  font-size: 16px;
-  font-weight: 600;
-  color: #1a1a1a;
+  display: block;
+  padding: 14px 4px;
+  font-size: 17px;
+  font-weight: 500;
+  color: #fff;
   text-decoration: none;
-  border-radius: 16px;
-  background: #fff;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-  transition: transform 0.15s, box-shadow 0.2s;
+  border-bottom: 1px solid #2a2a2a;
+}
+.mobile-menu-links a:last-child {
+  border-bottom: none;
 }
 .mobile-menu-links a:active {
-  transform: scale(0.98);
-  box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+  color: #ff8c42;
 }
-.mobile-menu-links a .menu-icon {
-  width: 36px;
-  height: 36px;
-  min-width: 36px;
-  border-radius: 12px;
-  background: #fff4e8;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 18px;
-}
+.mobile-menu-links a .menu-icon,
 .mobile-menu-links a .menu-arrow {
-  margin-left: auto;
-  color: #ccc;
-  font-size: 18px;
+  display: none;
 }
 .mobile-menu-footer {
-  padding: 16px 24px 32px;
-  text-align: center;
-}
-.mobile-menu-footer p {
-  font-size: 11px;
-  color: #bbb;
-  margin: 0;
+  display: none;
 }
 .mobile-menu-overlay {
   display: none;
@@ -1954,7 +1929,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0,0,0,0.4);
+  background: rgba(0,0,0,0.5);
   z-index: 999;
   opacity: 0;
   transition: opacity 0.3s;
