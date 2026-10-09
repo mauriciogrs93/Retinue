@@ -2019,33 +2019,53 @@
 </style>
 <style>
 
-/* === MOBILE MENU ALWAYS DARK === */
-.mobile-menu,
+
+
+</style>
+<style>
+
+/* === MOBILE MENU INVERTED THEME === */
+/* Dark mode (default): white menu */
+.mobile-menu {
+  background: #ffffff !important;
+}
+.mobile-menu-header .wordmark {
+  color: #1a1a1a !important;
+}
+.mobile-menu-header {
+  border-bottom-color: #f0ebe2 !important;
+}
+.mobile-menu-links a {
+  color: #1a1a1a !important;
+  border-bottom-color: #f0ebe2 !important;
+}
+.mobile-menu-links a:active {
+  color: #ff8c42 !important;
+}
+.mobile-menu-theme {
+  border-top-color: #f0ebe2 !important;
+}
+.mobile-menu-theme .theme-toggle {
+  border-color: #e0ddd8 !important;
+  color: #1a1a1a !important;
+}
+/* Light mode: dark menu */
 :root[data-theme="light"] .mobile-menu {
   background: #1a1a1a !important;
 }
-.mobile-menu-header .wordmark,
 :root[data-theme="light"] .mobile-menu-header .wordmark {
   color: #fff !important;
 }
-.mobile-menu-header,
 :root[data-theme="light"] .mobile-menu-header {
   border-bottom-color: #2a2a2a !important;
 }
-.mobile-menu-links a,
 :root[data-theme="light"] .mobile-menu-links a {
   color: #fff !important;
   border-bottom-color: #2a2a2a !important;
 }
-.mobile-menu-links a:active,
-:root[data-theme="light"] .mobile-menu-links a:active {
-  color: #ff8c42 !important;
-}
-.mobile-menu-theme,
 :root[data-theme="light"] .mobile-menu-theme {
   border-top-color: #2a2a2a !important;
 }
-.mobile-menu-theme .theme-toggle,
 :root[data-theme="light"] .mobile-menu-theme .theme-toggle {
   border-color: #2a2a2a !important;
   color: #fff !important;
