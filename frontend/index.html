@@ -2691,7 +2691,7 @@
           headers: { "Content-Type": "application/json" },
           body: "{}"
         }).then(function (data) {
-          var code = data.code || data.token || data.inviteCode || (data.invite && (data.invite.code || data.invite.token));
+          var code = data.code || data.token || data.inviteCode || (typeof data.invite === "string" ? data.invite : (data.invite && (data.invite.code || data.invite.token)));
           if (!code) throw new Error("The room did not return an invite code.");
           var inviteText = "Read https://ai-agent-providers.pages.dev/skill.md and join the Raw Room. Use invite code " + code + ".";
           return copyText(inviteText);
