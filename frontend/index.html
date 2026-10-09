@@ -1831,395 +1831,71 @@
     }
   </style>
 
+
+
 <style>
 
-/* === HAMBURGER MENU (mobile) === */
-.hamburger {
-  display: none;
-  flex-direction: column;
-  justify-content: center;
-  gap: 5px;
-  width: 40px;
-  height: 40px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 8px;
-  z-index: 1001;
+
+
+</style>
+
+
+
+
+
+<style>
+.header-actions { display: flex; align-items: center; gap: 8px; margin-left: auto; }
+.theme-btn {
+  width: 38px; height: 38px; border-radius: 10px;
+  border: 1px solid var(--line); background: transparent;
+  color: var(--ink); font-size: 17px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
 }
-.hamburger span {
-  display: block;
-  width: 22px;
-  height: 2px;
-  background: var(--ink);
-  border-radius: 2px;
-  transition: transform 0.3s ease, opacity 0.3s ease;
+.menu-btn {
+  display: none; width: 38px; height: 38px;
+  flex-direction: column; align-items: center; justify-content: center;
+  gap: 5px; background: transparent; border: none; cursor: pointer;
 }
-.hamburger[aria-expanded="true"] span:nth-child(1) {
-  transform: translateY(7px) rotate(45deg);
+.menu-btn span { width: 20px; height: 2px; background: var(--ink); border-radius: 2px; }
+.mobile-nav {
+  display: none; position: fixed; top: 0; right: 0; bottom: 0;
+  width: 260px; background: var(--surface); z-index: 200;
+  padding: 70px 20px 20px; box-shadow: -4px 0 20px rgba(0,0,0,0.15);
+  transform: translateX(100%); transition: transform 0.25s ease;
 }
-.hamburger[aria-expanded="true"] span:nth-child(2) {
-  opacity: 0;
-}
-.hamburger[aria-expanded="true"] span:nth-child(3) {
-  transform: translateY(-7px) rotate(-45deg);
-}
-.mobile-menu {
-  display: none;
-  position: fixed;
-  top: 0;
-  right: -100%;
-  width: 280px;
-  max-width: 80vw;
-  height: 100vh;
-  height: 100dvh;
-  background: #1a1a1a;
-  z-index: 1000;
-  transition: right 0.3s ease;
-  padding: 70px 20px 20px;
-  overflow-y: auto;
-}
-.mobile-menu-header {
-  padding: 0 4px 16px;
-  border-bottom: 1px solid #2a2a2a;
-  margin-bottom: 8px;
-}
-.mobile-menu-header .wordmark {
-  font-size: 20px;
-  font-weight: 700;
-  color: #fff;
-  text-decoration: none;
-}
-.mobile-menu-header p {
-  display: none;
-}
-.mobile-menu.open {
-  right: 0;
-}
-.mobile-menu-links {
-  display: flex;
-  flex-direction: column;
-  padding: 8px 0;
-}
-.mobile-menu-links a {
-  display: block;
-  padding: 14px 4px;
-  font-size: 17px;
-  font-weight: 500;
-  color: #fff;
-  text-decoration: none;
-  border-bottom: 1px solid #2a2a2a;
-}
-.mobile-menu-links a:last-child {
-  border-bottom: none;
-}
-.mobile-menu-links a:active {
-  color: #ff8c42;
-}
-.mobile-menu-links a .menu-icon,
-.mobile-menu-links a .menu-arrow {
-  display: none;
-}
-.mobile-menu-footer {
-  display: none;
-}
-.mobile-menu-overlay {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0,0,0,0.5);
-  z-index: 999;
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-.mobile-menu-overlay.show {
-  opacity: 1;
+.mobile-nav.open { transform: translateX(0); }
+.mobile-nav a {
+  display: block; padding: 14px 8px; font-size: 17px; font-weight: 600;
+  color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--line);
 }
 @media (max-width: 768px) {
-  .hamburger { display: flex; }
+  .menu-btn { display: flex; }
   .site-nav { display: none; }
-  .mobile-menu { display: block; }
-  .site-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
+  .mobile-nav { display: block; }
 }
-
-</style>
-<style>
-
-/* === THEME TOGGLE === */
-.theme-toggle {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  background: transparent;
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  cursor: pointer;
-  font-size: 18px;
-  color: var(--ink);
-  transition: background 0.2s, transform 0.15s;
-  flex-shrink: 0;
-}
-.theme-toggle.desktop-only {
-  margin-left: 12px;
-}
-.mobile-menu-theme {
-  padding: 16px 4px;
-  border-top: 1px solid #2a2a2a;
-  margin-top: 8px;
-}
-.mobile-menu-theme .theme-toggle {
-  width: 100%;
-  height: auto;
-  padding: 14px;
-  border: 1px solid #2a2a2a;
-  border-radius: 12px;
-  gap: 10px;
-  font-size: 16px;
-}
-.mobile-menu-theme .theme-label {
-  font-size: 15px;
-  font-weight: 500;
-}
-@media (max-width: 768px) {
-  .theme-toggle.desktop-only { display: none; }
-  .theme-toggle.header-toggle { display: flex; }
-}
-/* Header toggle: hidden on desktop (we have desktop-only), shown on mobile */
-.theme-toggle.header-toggle {
-  display: none !important;
-}
-@media (max-width: 768px) {
-  .theme-toggle.header-toggle {
-    display: flex !important;
-  }
-}
-.theme-toggle:active {
-  transform: scale(0.95);
-}
-.theme-toggle:hover {
-  background: var(--surface-2);
-}
-@media (max-width: 768px) {
-  .theme-toggle {
-    width: 36px;
-    height: 36px;
-    font-size: 16px;
-  }
-}
-
-</style>
-<style>
-
-
-
-</style>
-<style>
-
-/* === MOBILE MENU INVERTED THEME === */
-/* Dark mode (default): white menu */
-.mobile-menu {
-  background: #ffffff !important;
-}
-.mobile-menu-header .wordmark {
-  color: #1a1a1a !important;
-}
-.mobile-menu-header {
-  border-bottom-color: #f0ebe2 !important;
-}
-.mobile-menu-links a {
-  color: #1a1a1a !important;
-  border-bottom-color: #f0ebe2 !important;
-}
-.mobile-menu-links a:active {
-  color: #ff8c42 !important;
-}
-.mobile-menu-theme {
-  border-top-color: #f0ebe2 !important;
-}
-.mobile-menu-theme .theme-toggle {
-  border-color: #e0ddd8 !important;
-  color: #1a1a1a !important;
-}
-/* Light mode: dark menu */
-:root[data-theme="light"] .mobile-menu {
-  background: #1a1a1a !important;
-}
-:root[data-theme="light"] .mobile-menu-header .wordmark {
-  color: #fff !important;
-}
-:root[data-theme="light"] .mobile-menu-header {
-  border-bottom-color: #2a2a2a !important;
-}
-:root[data-theme="light"] .mobile-menu-links a {
-  color: #fff !important;
-  border-bottom-color: #2a2a2a !important;
-}
-:root[data-theme="light"] .mobile-menu-theme {
-  border-top-color: #2a2a2a !important;
-}
-:root[data-theme="light"] .mobile-menu-theme .theme-toggle {
-  border-color: #2a2a2a !important;
-  color: #fff !important;
-}
-
-</style>
-<style>
-
-/* === TOGGLE ALIGN RIGHT === */
-.site-header .theme-toggle.desktop-only {
-  margin-left: auto;
-}
-/* On mobile, header has wordmark left, toggles right */
-@media (max-width: 768px) {
-  .site-header {
-    display: flex;
-    align-items: center;
-  }
-  .site-header .header-context {
-    margin-right: auto;
-  }
-  .site-header .theme-toggle.header-toggle {
-    margin-left: auto;
-    margin-right: 8px;
-  }
-  .site-header .hamburger {
-    margin-left: 0;
-  }
-}
-
-</style>
-<style>
-
-/* === DESKTOP NAV ALIGN RIGHT === */
 @media (min-width: 769px) {
-  .site-header {
-    display: flex;
-    align-items: center;
-  }
-  .site-header .header-context {
-    margin-right: auto;
-  }
-  .site-header .site-nav {
-    margin-left: auto;
-    margin-right: 12px;
-  }
-  .site-header .theme-toggle.desktop-only {
-    margin-left: 0;
-  }
+  .mobile-nav { display: none !important; }
 }
-
-</style>
-<style>
-
-/* === NAV FLUSH RIGHT === */
-@media (min-width: 769px) {
-  .site-header {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: flex-start !important;
-  }
-  .site-header .header-context {
-    margin-right: auto !important;
-    flex-shrink: 0;
-  }
-  .site-header .site-nav {
-    display: flex !important;
-    margin-left: auto !important;
-    margin-right: 16px !important;
-    flex-shrink: 0;
-  }
-  .site-header .theme-toggle.desktop-only {
-    flex-shrink: 0;
-    margin-left: 0 !important;
-  }
-}
-
-</style>
-<style>
-
-/* === MOBILE HEADER: toggle next to hamburger, both right === */
-@media (max-width: 768px) {
-  .site-header {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: flex-start !important;
-    gap: 0 !important;
-  }
-  .site-header .header-context {
-    margin-right: auto !important;
-    flex-shrink: 0;
-  }
-  .site-header .theme-toggle.header-toggle {
-    display: flex !important;
-    margin-left: auto !important;
-    margin-right: 4px !important;
-    flex-shrink: 0;
-    order: 2;
-  }
-  .site-header .hamburger {
-    display: flex !important;
-    flex-shrink: 0;
-    order: 3;
-    margin-left: 0 !important;
-  }
-  .site-header .site-nav {
-    display: none !important;
-  }
-  .site-header .theme-toggle.desktop-only {
-    display: none !important;
-  }
-}
-
-</style>
-</head>
+</style></head>
 <body>
   <div class="global-header">
     <header class="site-header">
       <div class="header-context"><a class="wordmark" href="#/directory">Retinue</a><span class="header-count" id="headerCount">31 curated agents</span></div>
-      <button class="theme-toggle header-toggle" id="themeToggleHeader" aria-label="Switch to light mode" title="Toggle theme">
-        <span class="theme-icon-dark">◐</span><span class="theme-icon-light" style="display:none;">◑</span>
-      </button>
-      <button class="hamburger" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
       <nav class="site-nav" aria-label="Primary navigation">
         <a href="#/directory" data-route-link="directory" aria-current="page">Directory</a>
         <a href="#/room" data-route-link="room">Room</a>
         <a href="#/about" data-route-link="about">About</a>
         <a href="#/suggest" data-route-link="suggest">Suggest</a>
       </nav>
-      <button class="theme-toggle desktop-only" id="themeToggle" aria-label="Switch to light mode" title="Toggle theme">
-        <span class="theme-icon-dark">◐</span><span class="theme-icon-light" style="display:none;">◑</span>
-      </button>
-      <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
-        <div class="mobile-menu-header">
-          <a class="wordmark" href="#/directory">Retinue</a>
-          <p>31 curated AI agents</p>
-        </div>
-        <div class="mobile-menu-links">
-          <a href="#/directory" data-route-link="directory"><span class="menu-icon">▦</span>Directory<span class="menu-arrow">›</span></a>
-          <a href="#/room" data-route-link="room"><span class="menu-icon">◉</span>Room<span class="menu-arrow">›</span></a>
-          <a href="#/about" data-route-link="about"><span class="menu-icon">ℹ</span>About<span class="menu-arrow">›</span></a>
-          <a href="#/suggest" data-route-link="suggest"><span class="menu-icon">✚</span>Suggest<span class="menu-arrow">›</span></a>
-        </div>
-        <div class="mobile-menu-theme">
-          <button class="theme-toggle mobile-only" id="themeToggleMobile" aria-label="Switch to light mode">
-            <span class="theme-icon-dark">◐</span><span class="theme-icon-light" style="display:none;">◑</span>
-            <span class="theme-label">Light mode</span>
-          </button>
-        </div>
-        <div class="mobile-menu-footer">
-          <p>Find an agent that fits.</p>
-        </div>
+      <div class="header-actions">
+        <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">◐</button>
+        <button class="menu-btn" id="menuBtn" aria-label="Open menu"><span></span><span></span><span></span></button>
+      </div>
+      <div class="mobile-nav" id="mobileNav">
+        <a href="#/directory">Directory</a>
+        <a href="#/room">Room</a>
+        <a href="#/about">About</a>
+        <a href="#/suggest">Suggest</a>
       </div>
     </header>
   </div>
@@ -4241,112 +3917,54 @@
     })();
   </script>
 
-<script>
-(function() {
-  function initHamburger() {
-  var btn = document.getElementById('hamburgerBtn');
-  var menu = document.getElementById('mobileMenu');
-  if (!btn || !menu) {
-    // Retry if DOM not ready
-    setTimeout(initHamburger, 100);
-    return;
-  }
-  
-  // Create overlay
-  var overlay = document.createElement('div');
-  overlay.className = 'mobile-menu-overlay';
-  document.body.appendChild(overlay);
-  
-  function openMenu() {
-    menu.classList.add('open');
-    menu.setAttribute('aria-hidden', 'false');
-    btn.setAttribute('aria-expanded', 'true');
-    btn.setAttribute('aria-label', 'Close menu');
-    overlay.style.display = 'block';
-    requestAnimationFrame(function() { overlay.classList.add('show'); });
-    document.body.style.overflow = 'hidden';
-  }
-  
-  function closeMenu() {
-    menu.classList.remove('open');
-    menu.setAttribute('aria-hidden', 'true');
-    btn.setAttribute('aria-expanded', 'false');
-    btn.setAttribute('aria-label', 'Open menu');
-    overlay.classList.remove('show');
-    document.body.style.overflow = '';
-    setTimeout(function() { overlay.style.display = 'none'; }, 300);
-  }
-  
-  btn.addEventListener('click', function() {
-    if (menu.classList.contains('open')) { closeMenu(); } else { openMenu(); }
-  });
-  
-  overlay.addEventListener('click', closeMenu);
-  
-  // Handle link clicks: close menu, let natural navigation happen
-  menu.querySelectorAll('a').forEach(function(link) {
-    link.addEventListener('click', function() {
-      closeMenu();
-    });
-  });
-  
-  // Close on Escape
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && menu.classList.contains('open')) closeMenu();
-  });
-  }
-  // Init when DOM ready
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initHamburger);
-  } else {
-    initHamburger();
-  }
-})();
-</script>
+
+
+
 
 
 <script>
 (function() {
-  var toggles = [document.getElementById('themeToggle'), document.getElementById('themeToggleMobile'), document.getElementById('themeToggleHeader')].filter(Boolean);
-  if (!toggles.length) return;
-  
-  var root = document.documentElement;
-  
-  // Load saved preference (default is dark)
-  var saved = null;
-  try { saved = localStorage.getItem('retinue-theme'); } catch(e) {}
-  
-  function applyTheme(theme) {
-    var isLight = theme === 'light';
-    if (isLight) {
-      root.setAttribute('data-theme', 'light');
-    } else {
-      root.removeAttribute('data-theme');
+  function init() {
+    var themeBtn = document.getElementById('themeBtn');
+    var menuBtn = document.getElementById('menuBtn');
+    var mobileNav = document.getElementById('mobileNav');
+    var root = document.documentElement;
+    
+    // Theme toggle
+    if (themeBtn) {
+      var saved = null;
+      try { saved = localStorage.getItem('retinue-theme'); } catch(e) {}
+      if (saved === 'light') root.setAttribute('data-theme', 'light');
+      
+      themeBtn.addEventListener('click', function() {
+        var isLight = root.getAttribute('data-theme') === 'light';
+        if (isLight) {
+          root.removeAttribute('data-theme');
+          try { localStorage.setItem('retinue-theme', 'dark'); } catch(e) {}
+        } else {
+          root.setAttribute('data-theme', 'light');
+          try { localStorage.setItem('retinue-theme', 'light'); } catch(e) {}
+        }
+      });
     }
-    toggles.forEach(function(toggle) {
-      toggle.setAttribute('aria-label', isLight ? 'Switch to dark mode' : 'Switch to light mode');
-      var darkIcon = toggle.querySelector('.theme-icon-dark');
-      var lightIcon = toggle.querySelector('.theme-icon-light');
-      var label = toggle.querySelector('.theme-label');
-      if (darkIcon) darkIcon.style.display = isLight ? 'none' : '';
-      if (lightIcon) lightIcon.style.display = isLight ? '' : 'none';
-      if (label) label.textContent = isLight ? 'Dark mode' : 'Light mode';
-    });
+    
+    // Mobile menu
+    if (menuBtn && mobileNav) {
+      menuBtn.addEventListener('click', function() {
+        mobileNav.classList.toggle('open');
+      });
+      mobileNav.querySelectorAll('a').forEach(function(a) {
+        a.addEventListener('click', function() {
+          mobileNav.classList.remove('open');
+        });
+      });
+    }
   }
-  
-  // Apply saved or default (dark)
-  applyTheme(saved === 'light' ? 'light' : 'dark');
-  
-  toggles.forEach(function(toggle) {
-    toggle.addEventListener('click', function() {
-      var isLight = root.getAttribute('data-theme') === 'light';
-      var newTheme = isLight ? 'dark' : 'light';
-      applyTheme(newTheme);
-      try { localStorage.setItem('retinue-theme', newTheme); } catch(e) {}
-    });
-  });
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
 })();
-</script>
-
-</body>
+</script></body>
 </html>
