@@ -1829,6 +1829,101 @@
       .detail-status-actions { gap: 6px; }
     }
   </style>
+<style>
+
+/* === SYMMETRIC iOS-STYLE CARD REDESIGN === */
+.recommended-card {
+  border-radius: 20px !important;
+  padding: 20px 18px !important;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.06) !important;
+  border: 1px solid #f0ebe2 !important;
+  background: #ffffff !important;
+  text-align: center !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+}
+
+/* Logo - centered, 64px in cream rounded square */
+.recommended-card .card-logo,
+.recommended-card img:first-child {
+  width: 64px !important;
+  height: 64px !important;
+  border-radius: 18px !important;
+  background: #faf8f5 !important;
+  margin: 0 auto 12px !important;
+  object-fit: contain !important;
+}
+
+/* Name - centered, 17px bold */
+.recommended-card h3,
+.recommended-card h4,
+.recommended-card .card-title {
+  text-align: center !important;
+  font-size: 17px !important;
+  font-weight: 700 !important;
+  margin: 0 0 4px !important;
+}
+
+/* Category - centered, 12px gray */
+.recommended-card .card-meta {
+  text-align: center !important;
+  align-items: center !important;
+  height: auto !important;
+  padding: 0 !important;
+  margin-bottom: 10px !important;
+}
+
+/* Description in cream box */
+.recommended-card .card-summary {
+  background: #faf8f5 !important;
+  border-radius: 14px !important;
+  padding: 12px !important;
+  text-align: left !important;
+  font-size: 12px !important;
+  margin: 0 0 14px !important;
+  min-height: auto !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* Badges centered */
+.recommended-card .card-badges,
+.recommended-card .badges {
+  display: flex !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  margin-bottom: 14px !important;
+  flex-wrap: wrap !important;
+}
+
+/* Bottom - full width dark button */
+.recommended-card .card-bottom {
+  width: 100% !important;
+  margin-top: auto !important;
+}
+
+.recommended-card .card-actions {
+  width: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px !important;
+  margin-top: 0 !important;
+}
+
+.recommended-card .card-action,
+.recommended-card button {
+  width: 100% !important;
+  padding: 12px !important;
+  border: none !important;
+  background: #1a1a1a !important;
+  color: #fff !important;
+  border-radius: 14px !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+}
+
+</style>
 </head>
 <body>
   <div class="global-header">
