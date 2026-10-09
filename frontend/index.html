@@ -2144,6 +2144,42 @@
 }
 
 </style>
+<style>
+
+/* === MOBILE HEADER: toggle next to hamburger, both right === */
+@media (max-width: 768px) {
+  .site-header {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 0 !important;
+  }
+  .site-header .header-context {
+    margin-right: auto !important;
+    flex-shrink: 0;
+  }
+  .site-header .theme-toggle.header-toggle {
+    display: flex !important;
+    margin-left: auto !important;
+    margin-right: 4px !important;
+    flex-shrink: 0;
+    order: 2;
+  }
+  .site-header .hamburger {
+    display: flex !important;
+    flex-shrink: 0;
+    order: 3;
+    margin-left: 0 !important;
+  }
+  .site-header .site-nav {
+    display: none !important;
+  }
+  .site-header .theme-toggle.desktop-only {
+    display: none !important;
+  }
+}
+
+</style>
 </head>
 <body>
   <div class="global-header">
