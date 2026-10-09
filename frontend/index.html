@@ -1886,6 +1886,18 @@
 @media (min-width: 769px) {
   .mobile-nav { display: none !important; }
 }
+</style><style>
+.mobile-nav {
+  position: fixed; top: 0; right: 0; bottom: 0; width: 280px;
+  background-color: #111111;
+  z-index: 99999;
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  opacity: 1;
+}
+.mobile-nav.open {
+  transform: translateX(0);
+}
 </style></head>
 <body>
   <div class="global-header">
@@ -1899,16 +1911,20 @@
       </nav>
       <div class="header-actions">
         <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">◐</button>
-        <div class="menu-btn" id="menuBtn" role="button" aria-label="Open menu" tabindex="0" onclick="document.getElementById('mobileNav').style.display='block'"><span></span><span></span><span></span></div>
+        <div class="menu-btn" id="menuBtn" role="button" aria-label="Open menu" tabindex="0" onclick="document.getElementById('mobileNav').classList.toggle('open')"><span></span><span></span><span></span></div>
       </div>
       
     </header>
-<div class="mobile-nav" id="mobileNav" style="display:none;position:fixed;top:0;right:0;bottom:0;width:260px;background:#181b18;z-index:9999;padding:20px;box-shadow:-4px 0 20px rgba(0,0,0,0.5);"><div onclick="document.getElementById('mobileNav').style.display='none'" style="text-align:right;font-size:24px;color:#f1f3ee;cursor:pointer;padding:10px;">✕</div><div style="padding-top:20px;">
-        <a href="#/directory" onclick="document.getElementById('mobileNav').style.display='none'" style="display:block;padding:14px 8px;font-size:17px;font-weight:600;color:#f1f3ee;text-decoration:none;border-bottom:1px solid #30352f;">Directory</a>
-        <a href="#/room" onclick="document.getElementById('mobileNav').style.display='none'" style="display:block;padding:14px 8px;font-size:17px;font-weight:600;color:#f1f3ee;text-decoration:none;border-bottom:1px solid #30352f;">Room</a>
-        <a href="#/about" onclick="document.getElementById('mobileNav').style.display='none'" style="display:block;padding:14px 8px;font-size:17px;font-weight:600;color:#f1f3ee;text-decoration:none;border-bottom:1px solid #30352f;">About</a>
-        <a href="#/suggest" onclick="document.getElementById('mobileNav').style.display='none'" style="display:block;padding:14px 8px;font-size:17px;font-weight:600;color:#f1f3ee;text-decoration:none;">Suggest</a>
-      </div></div>
+<div class="mobile-nav" id="mobileNav">
+  <div onclick="document.getElementById('mobileNav').classList.remove('open')" style="text-align:right;font-size:24px;color:#fff;cursor:pointer;padding:10px 10px 0;">✕</div>
+  <div style="padding:20px;">
+    <a href="#/directory" onclick="document.getElementById('mobileNav').classList.remove('open')" style="display:block;padding:14px 8px;font-size:17px;font-weight:600;color:#fff;text-decoration:none;border-bottom:1px solid #2a2a2a;">Directory</a>
+    <a href="#/room" onclick="document.getElementById('mobileNav').classList.remove('open')" style="display:block;padding:14px 8px;font-size:17px;font-weight:600;color:#fff;text-decoration:none;border-bottom:1px solid #2a2a2a;">Room</a>
+    <a href="#/about" onclick="document.getElementById('mobileNav').classList.remove('open')" style="display:block;padding:14px 8px;font-size:17px;font-weight:600;color:#fff;text-decoration:none;border-bottom:1px solid #2a2a2a;">About</a>
+    <a href="#/suggest" onclick="document.getElementById('mobileNav').classList.remove('open')" style="display:block;padding:14px 8px;font-size:17px;font-weight:600;color:#fff;text-decoration:none;">Suggest</a>
+  </div>
+</div>
+
   </div>
 
   <main class="page" id="directoryPage">
