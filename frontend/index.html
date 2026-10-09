@@ -1852,9 +1852,12 @@
   display: flex; align-items: center; justify-content: center;
 }
 .menu-btn {
-  display: none; width: 38px; height: 38px;
+  display: none; width: 44px; height: 44px;
   flex-direction: column; align-items: center; justify-content: center;
-  gap: 5px; background: transparent; border: none; cursor: pointer;
+  gap: 6px; background: transparent; border: none; cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  user-select: none; -webkit-user-select: none;
 }
 .menu-btn span { width: 20px; height: 2px; background: var(--ink); border-radius: 2px; }
 .mobile-nav {
@@ -1896,7 +1899,7 @@
       </nav>
       <div class="header-actions">
         <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">◐</button>
-        <button class="menu-btn" id="menuBtn" aria-label="Open menu" onclick="var m=document.getElementById('mobileNav');m.style.display=m.style.display==='block'?'none':'block';"><span></span><span></span><span></span></button>
+        <div class="menu-btn" id="menuBtn" role="button" aria-label="Open menu" tabindex="0" onclick="var m=document.getElementById('mobileNav');m.style.display=(m.style.display==='block'?'none':'block');" ontouchstart="var m=document.getElementById('mobileNav');m.style.display=(m.style.display==='block'?'none':'block');event.preventDefault();"><span></span><span></span><span></span></div>
       </div>
       <div class="mobile-nav" id="mobileNav" style="display:none;position:fixed;top:0;right:0;bottom:0;width:260px;background:#181b18;z-index:9999;padding:70px 20px 20px;box-shadow:-4px 0 20px rgba(0,0,0,0.5);">
         <a href="#/directory" onclick="document.getElementById('mobileNav').style.display='none'" style="display:block;padding:14px 8px;font-size:17px;font-weight:600;color:#f1f3ee;text-decoration:none;border-bottom:1px solid #30352f;">Directory</a>
