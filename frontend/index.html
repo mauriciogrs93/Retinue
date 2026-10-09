@@ -1993,11 +1993,14 @@
   .theme-toggle.desktop-only { display: none; }
   .theme-toggle.header-toggle { display: flex; }
 }
+/* Header toggle: hidden on desktop (we have desktop-only), shown on mobile */
 .theme-toggle.header-toggle {
-  display: none;
+  display: none !important;
 }
-@media (min-width: 769px) {
-  .theme-toggle.header-toggle { display: none; }
+@media (max-width: 768px) {
+  .theme-toggle.header-toggle {
+    display: flex !important;
+  }
 }
 .theme-toggle:active {
   transform: scale(0.95);
