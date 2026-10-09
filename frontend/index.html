@@ -29,32 +29,30 @@
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      color-scheme: light dark;
-      --bg: #f3f4f1;
-      --surface: #ffffff;
-      --surface-2: #e9ebe7;
-      --ink: #161816;
-      --muted: #646862;
-      --line: #d5d9d2;
-      --accent: #ef5b2a;
-      --logo-stage: #ffffff;
-      --shadow: 0 24px 70px rgba(26, 29, 26, .14);
-      --focus: #0d6b57;
+      color-scheme: dark light;
+      --bg: #101210;
+      --surface: #181b18;
+      --surface-2: #222622;
+      --ink: #f1f3ee;
+      --muted: #a5aaa2;
+      --line: #30352f;
+      --accent: #ff7447;
+      --logo-stage: #f8f9f6;
+      --shadow: 0 28px 80px rgba(0, 0, 0, .44);
+      --focus: #67d1b2;
     }
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --bg: #101210;
-        --surface: #181b18;
-        --surface-2: #222622;
-        --ink: #f1f3ee;
-        --muted: #a5aaa2;
-        --line: #30352f;
-        --accent: #ff7447;
-        --logo-stage: #f8f9f6;
-        --shadow: 0 28px 80px rgba(0, 0, 0, .44);
-        --focus: #67d1b2;
+    :root[data-theme="light"] {
+        --bg: #f3f4f1;
+        --surface: #ffffff;
+        --surface-2: #e9ebe7;
+        --ink: #161816;
+        --muted: #646862;
+        --line: #d5d9d2;
+        --accent: #ef5b2a;
+        --logo-stage: #ffffff;
+        --shadow: 0 24px 70px rgba(26, 29, 26, .14);
+        --focus: #0d6b57;
       }
-    }
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
@@ -1949,11 +1947,46 @@
 }
 
 </style>
+<style>
+
+/* === THEME TOGGLE === */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 18px;
+  color: var(--ink);
+  transition: background 0.2s, transform 0.15s;
+}
+.theme-toggle:active {
+  transform: scale(0.95);
+}
+.theme-toggle:hover {
+  background: var(--surface-2);
+}
+@media (max-width: 768px) {
+  .theme-toggle {
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
+  }
+}
+
+</style>
 </head>
 <body>
   <div class="global-header">
     <header class="site-header">
       <div class="header-context"><a class="wordmark" href="#/directory">Retinue</a><span class="header-count" id="headerCount">31 curated agents</span></div>
+      <button class="theme-toggle" id="themeToggle" aria-label="Switch to light mode" title="Toggle theme">
+        <span class="theme-icon-dark">◐</span><span class="theme-icon-light" style="display:none;">◑</span>
+      </button>
       <button class="hamburger" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
@@ -4043,6 +4076,46 @@
   // Close on Escape
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape' && menu.classList.contains('open')) closeMenu();
+  });
+})();
+</script>
+
+
+<script>
+(function() {
+  var toggle = document.getElementById('themeToggle');
+  if (!toggle) return;
+  
+  var darkIcon = toggle.querySelector('.theme-icon-dark');
+  var lightIcon = toggle.querySelector('.theme-icon-light');
+  var root = document.documentElement;
+  
+  // Load saved preference (default is dark)
+  var saved = null;
+  try { saved = localStorage.getItem('retinue-theme'); } catch(e) {}
+  
+  function applyTheme(theme) {
+    if (theme === 'light') {
+      root.setAttribute('data-theme', 'light');
+      toggle.setAttribute('aria-label', 'Switch to dark mode');
+      if (darkIcon) darkIcon.style.display = 'none';
+      if (lightIcon) lightIcon.style.display = '';
+    } else {
+      root.removeAttribute('data-theme');
+      toggle.setAttribute('aria-label', 'Switch to light mode');
+      if (darkIcon) darkIcon.style.display = '';
+      if (lightIcon) lightIcon.style.display = 'none';
+    }
+  }
+  
+  // Apply saved or default (dark)
+  applyTheme(saved === 'light' ? 'light' : 'dark');
+  
+  toggle.addEventListener('click', function() {
+    var isLight = root.getAttribute('data-theme') === 'light';
+    var newTheme = isLight ? 'dark' : 'light';
+    applyTheme(newTheme);
+    try { localStorage.setItem('retinue-theme', newTheme); } catch(e) {}
   });
 })();
 </script>
