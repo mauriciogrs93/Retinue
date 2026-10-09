@@ -1844,60 +1844,28 @@
 
 
 <style>
-.header-actions { display: flex; align-items: center; gap: 8px; margin-left: auto; }
-.theme-btn {
-  width: 38px; height: 38px; border-radius: 10px;
-  border: 1px solid var(--line); background: transparent;
-  color: var(--ink); font-size: 17px; cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-}
-.menu-btn {
-  display: none; width: 44px; height: 44px;
-  flex-direction: column; align-items: center; justify-content: center;
-  gap: 6px; background: transparent; border: none; cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
-  touch-action: manipulation;
-  user-select: none; -webkit-user-select: none;
-}
-.menu-btn span { width: 20px; height: 2px; background: var(--ink); border-radius: 2px; }
-.mobile-nav {
-  display: none; position: fixed; top: 0; right: 0; bottom: 0;
-  width: 260px; background: #181b18; z-index: 200;
-  padding: 70px 20px 20px; box-shadow: -4px 0 20px rgba(0,0,0,0.3);
-  transform: translateX(100%); transition: transform 0.25s ease;
-  opacity: 1;
-}
-:root[data-theme="light"] .mobile-nav {
-  background: #ffffff;
-}
-.mobile-nav a {
+
+
+
+
+:root[data-theme="light"] 
   background: transparent;
 }
-.mobile-nav.open { transform: translateX(0); }
-.mobile-nav a {
+
   display: block; padding: 14px 8px; font-size: 17px; font-weight: 600;
   color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--line);
 }
 @media (max-width: 768px) {
-  .menu-btn { display: flex; }
+  
   .site-nav { display: none; }
-  .mobile-nav { display: block; }
+  
 }
 @media (min-width: 769px) {
-  .mobile-nav { display: none !important; }
+  
 }
 </style><style>
-.mobile-nav {
-  position: fixed; top: 0; right: 0; bottom: 0; width: 280px;
-  background-color: #111111;
-  z-index: 99999;
-  transform: translateX(100%);
-  transition: transform 0.3s ease;
-  opacity: 1;
-}
-.mobile-nav.open {
-  transform: translateX(0);
-}
+
+
 </style></head>
 <body>
   <div class="global-header">
@@ -1909,24 +1877,8 @@
         <a href="#/about" data-route-link="about">About</a>
         <a href="#/suggest" data-route-link="suggest">Suggest</a>
       </nav>
-      <div class="header-actions">
-        <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">◐</button>
-        <div class="menu-btn" id="menuBtn" role="button" aria-label="Open menu" tabindex="0" onclick="document.getElementById('mobileNav').classList.toggle('open')"><span></span><span></span><span></span></div>
-      </div>
-      
     </header>
-<div class="mobile-nav" id="mobileNav" style="position:fixed;top:0;right:0;bottom:0;width:280px;z-index:99999;transform:translateX(100%);transition:transform 0.3s ease;">
-<div style="position:absolute;top:0;left:0;right:0;bottom:0;background:#111111;opacity:1;"></div>
-<div style="position:relative;z-index:1;">
-<div onclick="document.getElementById('mobileNav').classList.remove('open')" style="text-align:right;font-size:24px;color:#fff;cursor:pointer;padding:20px 20px 0;">✕</div>
-<div style="padding:20px;">
-<a href="#/directory" onclick="document.getElementById('mobileNav').classList.remove('open')" style="display:block;padding:14px 8px;font-size:17px;font-weight:600;color:#fff;text-decoration:none;border-bottom:1px solid #2a2a2a;background:#111111;">Directory</a>
-<a href="#/room" onclick="document.getElementById('mobileNav').classList.remove('open')" style="display:block;padding:14px 8px;font-size:17px;font-weight:600;color:#fff;text-decoration:none;border-bottom:1px solid #2a2a2a;background:#111111;">Room</a>
-<a href="#/about" onclick="document.getElementById('mobileNav').classList.remove('open')" style="display:block;padding:14px 8px;font-size:17px;font-weight:600;color:#fff;text-decoration:none;border-bottom:1px solid #2a2a2a;background:#111111;">About</a>
-<a href="#/suggest" onclick="document.getElementById('mobileNav').classList.remove('open')" style="display:block;padding:14px 8px;font-size:17px;font-weight:600;color:#fff;text-decoration:none;background:#111111;">Suggest</a>
-</div>
-</div>
-</div>
+
       <div>
         <p class="detail-kicker" id="detailCategory"></p>
         <h2 class="detail-title route-heading" id="detailTitle"></h2>
@@ -3774,57 +3726,5 @@
 
 
 
-<script>
-(function() {
-  function init() {
-    var themeBtn = document.getElementById('themeBtn');
-    var menuBtn = document.getElementById('menuBtn');
-    var mobileNav = document.getElementById('mobileNav');
-    var root = document.documentElement;
-    
-    // Theme toggle
-    if (themeBtn) {
-      var saved = null;
-      try { saved = localStorage.getItem('retinue-theme'); } catch(e) {}
-      if (saved === 'light') root.setAttribute('data-theme', 'light');
-      
-      themeBtn.addEventListener('click', function() {
-        var isLight = root.getAttribute('data-theme') === 'light';
-        if (isLight) {
-          root.removeAttribute('data-theme');
-          try { localStorage.setItem('retinue-theme', 'dark'); } catch(e) {}
-        } else {
-          root.setAttribute('data-theme', 'light');
-          try { localStorage.setItem('retinue-theme', 'light'); } catch(e) {}
-        }
-      });
-    }
-    
-    // Mobile menu - simple show/hide
-    if (menuBtn && mobileNav) {
-      menuBtn.addEventListener('click', function(e) {
-        e.stopPropagation();
-        var isOpen = mobileNav.style.display === 'block';
-        mobileNav.style.display = isOpen ? 'none' : 'block';
-      });
-      mobileNav.querySelectorAll('a').forEach(function(a) {
-        a.addEventListener('click', function() {
-          mobileNav.style.display = 'none';
-        });
-      });
-      // Close when clicking outside
-      document.addEventListener('click', function(e) {
-        if (mobileNav.style.display === 'block' && !mobileNav.contains(e.target) && e.target !== menuBtn && !menuBtn.contains(e.target)) {
-          mobileNav.style.display = 'none';
-        }
-      });
-    }
-  }
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
-})();
-</script></body>
+</body>
 </html>
