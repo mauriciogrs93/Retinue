@@ -2564,13 +2564,14 @@
         "cortex-discover": "#213d4a", "cline": "#171917", "antigravity": "#4276e5", "opencode": "#171917",
         "goose": "#171917", "warp": "#16657b"
       };
+      var TESTED_SLUGS = ["muse", "grok-bot", "pickle", "tomo", "dots", "cue", "lindy", "sai"];
       providers.forEach(function (provider, index) {
         provider.slug = provider.slug || slugify(provider.name);
         provider.categoryKey = getCategoryKey(provider);
         provider.cardSummary = cardDetails[index] ? cardDetails[index][0] : provider.description;
         provider.priceShort = cardDetails[index] ? cardDetails[index][1] : "View profile";
         provider.verifiedDate = "2026-10";
-        provider.tested = ["muse", "grok-bot", "dots", "cue", "pickle", "tomo", "sai", "lindy"].indexOf(provider.slug) !== -1;
+        provider.tested = TESTED_SLUGS.indexOf(provider.slug) !== -1;
         provider.officialLogo = officialLogoAssets[provider.slug] || "";
         provider.brandColor = brandColors[provider.slug] || "#171917";
         provider.useTextLogo = !provider.officialLogo;
@@ -2703,7 +2704,7 @@
           logoStage.appendChild(image);
           logoStage.appendChild(fallback);
         }
-        if (provider.tested) {
+        if (featured) {
           var testedBadge = document.createElement("span");
           testedBadge.className = "tested-badge";
           testedBadge.textContent = "Hands-on tested";
@@ -2779,9 +2780,12 @@
       function buildCards() {
         carousel.innerHTML = "";
         recommendedGrid.innerHTML = "";
+        TESTED_SLUGS.forEach(function (slug) {
+          var index = providers.findIndex(function (provider) { return provider.slug === slug; });
+          if (index !== -1) recommendedGrid.appendChild(createListingCard(providers[index], index, true));
+        });
         providers.forEach(function (provider, index) {
-          if (provider.tested) recommendedGrid.appendChild(createListingCard(provider, index, true));
-          else carousel.appendChild(createListingCard(provider, index, false));
+          if (!provider.tested) carousel.appendChild(createListingCard(provider, index, false));
         });
         cards = Array.prototype.slice.call(carousel.querySelectorAll(".card"));
       }
